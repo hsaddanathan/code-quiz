@@ -15,3 +15,15 @@
 #submit {
     background-color: rgb(69, 46, 111);
 }
+
+#questions-section {
+    text-align: left;
+    font-size: 32px;
+    font-weight: bold;
+}
+#answers-section .btn{
+    display: block;
+    background-color: rgb(69, 46, 111);
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
