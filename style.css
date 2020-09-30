@@ -1,0 +1,17 @@
+
+
+.container  {
+    text-align: center;
+    margin-top: 75px;
+}
+
+#view-highscores{
+    color: rgb(154,138,171);
+}
+#start-quiz {
+    background-color: rgb(69, 46, 111);
+}
+
+#submit {
+    background-color: rgb(69, 46, 111);
+}
