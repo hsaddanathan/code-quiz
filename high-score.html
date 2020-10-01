@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="reset.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <body>
+            <main>
+              <!-- Container to show the highscores of the quiz game -->
+              <div class="container my-5 py-5 text-left">
+                <div class="row">
+                  <div class="col-8">
+                    <h1>High Scores</h1>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-8">
+                    <!-- scores will be dynamically added to the list from local storage as more users take the quiz -->
+                    <ul class="list-group mt-3" id="scores">
+                      <!-- <li
+                        class="list-group-item list-group-item-primary px-2 py-1 font-weight-bold"
+                      >
+                        0. TEST - 45
+                      </li> -->
+                    </ul>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-8 mt-4">
+                    <!-- buttons to go back to the quiz and to clear the scores from the board -->
+                    <button class="btn btn-primary rounded" id="go-back">
+                      Go Back
+                    </button>
+                    <button class="btn btn-primary rounded" id="clear-scores">
+                      Clear Highscores
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </main>
+        
+            <script src="high-score.js" async defer></script>
+        <script src="" async defer></script>
+    </body>
+</html>

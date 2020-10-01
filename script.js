@@ -6,7 +6,8 @@ var startButton = document.getElementById("start-quiz");
 var questionSection = document.getElementById("questions-section");
 var answerChoices = document.getElementById("answers-section");
 var completionPage = document.getElementById("completion-page");
-
+var correctIncorrect = document.getElementById("answer-validation");
+var submitButton = document.getElementById("submit");
 var timeRemaining = 75;
 var interval;
 var questionIndex = 0;
@@ -57,9 +58,10 @@ var questionArray = [
 ];
 var answerValidation;
 var finalScore;
+var scoreBoard = []
 
 completionPage.style.display = "none";
-
+// Function Definitions
 function startTimer() {
   timerScore.text = "Time: " + timeRemaining;
   interval = setInterval(function () {
@@ -69,6 +71,7 @@ function startTimer() {
     finalScore = timeRemaining;
     if (timeRemaining === 0) {
       clearInterval(interval);
+      presentScoreScreen();
     }
   }, 1000);
 }
@@ -100,51 +103,11 @@ function presentQuestions(index) {
       answerBttns.setAttribute("data-index", i);
 
       answerChoices.appendChild(answerBttns);
-    }function presentQuestions(index) {
-        if (index === questionArray.length) {
-          //    Ends Game and Presents Score Screen
-          clearInterval(interval);
-          presentScoreScreen();
-        } else {
-          // Clears Answer section before each question
-          answerChoices.innerHTML = "";
-          questionSection.textContent = questionArray[index].question;
-      
-          console.log(questionSection.textContent);
-      
-          for (var i = 0; i < questionArray[index].choices.length; i++) {
-            var answerBttns = document.createElement("button");
-      
-            answerBttns.textContent = questionArray[index].choices[i];
-      
-            answerBttns.setAttribute("class", "btn btn-primary rounded");
-            answerBttns.setAttribute("data-index", i);
-      
-            answerChoices.appendChild(answerBttns);
-          }
-        }
-      }
-      function checkAnswer(event){
-          var answerIndex = event.target.getAttribute("data-index");
-          event.preventDefault();
-          
-          if(event.target.matches("button") && 
-          questionArray[questionIndex].choices[answerIndex] === questionArray[questionIndex].answer){
-              answerValidation = "Correct!";
-              console.log(answerValidation);
-              questionIndex++;
-              presentQuestions(questionIndex);
-          }
-          else{
-              answerValidation = "Wrong";
-              console.log(answerValidation);
-              timeRemaining -=15;
-              questionIndex++;
-              presentQuestions(questionIndex);
-          }
-      }
+    }
   }
 }
+
+
 function checkAnswer(event) {
   var answerIndex = event.target.getAttribute("data-index");
   event.preventDefault();
@@ -155,25 +118,62 @@ function checkAnswer(event) {
       questionArray[questionIndex].answer
   ) {
     answerValidation = "Correct!";
-    console.log(answerValidation);
+    correctIncorrect.textContent = answerValidation;
     questionIndex++;
     presentQuestions(questionIndex);
   } else {
     answerValidation = "Wrong";
     console.log(answerValidation);
-    timeRemaining -= 10;
+    if (timeRemaining <= 15) {
+      clearInterval(interval);
+      timeRemaining = timeRemaining - timeRemaining;
+      presentScoreScreen();
+    } else {
+      timeRemaining -= 15;
+    }
+
     questionIndex++;
     presentQuestions(questionIndex);
   }
 }
-function presentScoreScreen(){
-    var qaContainer = document.getElementById("qa-container");
-    qaContainer.innerHTML = "";
-    completionPage.style.display = "block";
+function presentScoreScreen() {
+  var qaContainer = document.getElementById("qa-container");
+  qaContainer.innerHTML = "";
+  completionPage.style.display = "block";
 
-    var score = document.getElementById("final-score");
-    score.textContent = "Your final score is " + finalScore
+  var score = document.getElementById("final-score");
+  score.textContent = "Your final score is " + finalScore;
 }
+function answerStatus (){
+    var status = document.createElement("p");
+    status.textContent= answerValidation;
+    console.log(status)
+    correctIncorrect.appendChild(status)
+
+}
+function saveScores() {
+    // Grab user initials from input
+    var initials = document.getElementById("initials").value;
+  
+    // obtain the current scores object from local storage
+    var storedScoreBoard = JSON.parse(localStorage.getItem("userScores"));
+  
+    // if there are scores, sets the score array to the saved object array from local storage
+    if (storedScoreBoard !== null) {
+      scoreBoard = storedScoreBoard;
+    }
+  
+    // adds the new initials and scores to the array and saves those to local storage
+    scoreBoard.push({ name: initials, score: finalScore });
+    localStorage.setItem("userScores", JSON.stringify(scoreBoard));
+    console.log(scoreBoard);
+  }
 // Event Listeners
 startButton.addEventListener("click", startQuiz);
 answerChoices.addEventListener("click", checkAnswer);
+submitButton.addEventListener("click",function(event){
+    event.preventDefault();
+    saveScores();
+    console.log("Test");
+    window.location.href = "./high-score.html"
+})
