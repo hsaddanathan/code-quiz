@@ -1,5 +1,5 @@
 console.log("Hello World!");
-
+// DOM Variables
 var timerScore = document.getElementById("timer");
 var mainScreen = document.getElementById("main-screen");
 var startButton = document.getElementById("start-quiz");
@@ -8,6 +8,8 @@ var answerChoices = document.getElementById("answers-section");
 var completionPage = document.getElementById("completion-page");
 var correctIncorrect = document.getElementById("answer-validation");
 var submitButton = document.getElementById("submit");
+
+// JS Variables
 var timeRemaining = 75;
 var interval;
 var questionIndex = 0;
@@ -60,7 +62,7 @@ var answerValidation;
 var finalScore;
 var scoreBoard = []
 
-completionPage.style.display = "none";
+
 // Function Definitions
 function startTimer() {
   timerScore.text = "Time: " + timeRemaining;
@@ -106,7 +108,6 @@ function presentQuestions(index) {
     }
   }
 }
-
 
 function checkAnswer(event) {
   var answerIndex = event.target.getAttribute("data-index");
@@ -168,6 +169,11 @@ function saveScores() {
     localStorage.setItem("userScores", JSON.stringify(scoreBoard));
     console.log(scoreBoard);
   }
+
+//   Calls
+  completionPage.style.display = "none";
+
+
 // Event Listeners
 startButton.addEventListener("click", startQuiz);
 answerChoices.addEventListener("click", checkAnswer);

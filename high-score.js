@@ -1,8 +1,11 @@
+// DOM Variables
+// Targets list to populate scores
 var highScores = document.getElementById("scores");
+
 var backBtn = document.getElementById("go-back");
 var clearBoard = document.getElementById ("clear-scores")
 
-
+// Function Definition
 function showBoard() {
     var storedScoreBoard = JSON.parse(localStorage.getItem("userScores"));
 
@@ -11,7 +14,7 @@ function showBoard() {
             return b.score - a.score;
           });
 
-
+// Each score in the array creates a new list item with name and score
           for (var i = 0; i < storedScoreBoard.length; i++) {
             var scoreList = document.createElement("li");
             scoreList.setAttribute(
@@ -31,7 +34,8 @@ function showBoard() {
         }
     
 }
-
+// Function Call
+// Upon loading the stored scoreboard will populate
 window.onload = showBoard();
 
 backBtn.addEventListener("click", function (event){
