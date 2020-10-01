@@ -27,14 +27,14 @@ Alternatively, if you would like to only view the page please reference:
     https://hsaddanathan.github.io/code-quiz/
 
 ## Deployed Site Images
-![Landing Page](assets/quiz-landing-pagee.png)
+![Landing Page](assets/quiz-landing-page.png)
 Image depicts landing page
 ![Questions Page](Assets/quiz-questions.png)
 Image shows quiz questions
 ![User Submission](Assets/quiz-score.png)
-Image shows quiz questions
+Image shows user score and submission 
 ![Questions Page](Assets/score-board.png)
-Image shows quiz questions
+Image shows scoreboard
 
 ## Links
 
